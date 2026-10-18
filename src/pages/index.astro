@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import App from '../components/App';
+---
+
+<Layout>
+  <!-- client:only — the app reads localStorage on first render, so it can't SSR. -->
+  <App client:only="react" />
+</Layout>

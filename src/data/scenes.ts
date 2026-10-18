@@ -1,0 +1,53 @@
+export interface Scene {
+  id: string;
+  name: string;
+  /** Shown until real footage exists, and behind the video while it loads. */
+  gradient: string;
+  /** Seamless muted loop, e.g. { webm: '/scenes/rainy-cafe/video.webm', mp4: '...' } */
+  video?: { webm: string; mp4: string };
+  poster?: string;
+  /** ~400×225 preview for the scene picker. */
+  thumb?: string;
+  /**
+   * The ambient sounds this scene offers, in mixer order, with their default
+   * volume (0 = available but off). Ids refer to src/data/sounds.ts.
+   */
+  sounds: { id: string; volume: number }[];
+}
+
+export const scenes: Scene[] = [
+  {
+    id: 'rainy-cafe',
+    name: 'คาเฟ่วันฝนตก',
+    gradient: 'linear-gradient(160deg, #2b2a33 0%, #4a3f3a 55%, #6b5345 100%)',
+    video: { webm: '/scenes/rainy-cafe/video.webm', mp4: '/scenes/rainy-cafe/video.mp4' },
+    poster: '/scenes/rainy-cafe/poster.webp',
+    thumb: '/scenes/rainy-cafe/thumb.webp',
+    sounds: [
+      { id: 'rain', volume: 0.6 },
+      { id: 'storm', volume: 0 },
+      { id: 'chatter', volume: 0.3 },
+      { id: 'coffee', volume: 0.2 },
+      { id: 'keyboard', volume: 0 },
+    ],
+  },
+];
+
+export const defaultScene = scenes[0];
+
+/**
+ * Teased in the scene picker as non-selectable "coming soon" cards. To launch
+ * one, move it into `scenes` with its video and sound list.
+ */
+export const upcomingScenes: Pick<Scene, 'id' | 'name' | 'gradient'>[] = [
+  {
+    id: 'forest',
+    name: 'ป่ายามเช้า',
+    gradient: 'linear-gradient(160deg, #1f3a2e 0%, #3f6b4f 55%, #a3b98a 100%)',
+  },
+  {
+    id: 'night-ocean',
+    name: 'ทะเลตอนกลางคืน',
+    gradient: 'linear-gradient(160deg, #0b1630 0%, #1d3557 55%, #457b9d 100%)',
+  },
+];

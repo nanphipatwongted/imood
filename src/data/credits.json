@@ -1,0 +1,59 @@
+{
+  "_readme": "Log every third-party asset before it ships: file, source URL, author, license, whether attribution is required, and download date. Keep a screenshot of each license page alongside.",
+  "assets": [
+    {
+      "file": "public/sounds/rain.{ogg,m4a}",
+      "source": "Generated locally by scripts/generate-placeholder-sounds.sh (ffmpeg synthesis)",
+      "author": "imood",
+      "license": "Original — no third-party rights",
+      "attributionRequired": false,
+      "downloaded": null,
+      "note": "Placeholder only. Replace with real recordings before launch."
+    },
+    {
+      "file": "public/sounds/storm.{ogg,m4a}",
+      "source": "https://freesound.org/people/baltiyar13/sounds/587806/",
+      "author": "Baltiyar13",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "\"tiny strom.mp3\" (16s, tagged breeze/wind). Looped with scripts/process-sound.sh → 13.5s."
+    },
+    {
+      "file": "public/sounds/chatter.{ogg,m4a}",
+      "source": "https://freesound.org/people/felix.blume/sounds/135861/",
+      "author": "felix.blume",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Petanque game at a holiday center in Royan, France — conversation plus ball throws (2:00). Looped → 117s."
+    },
+    {
+      "file": "public/sounds/coffee.{ogg,m4a}",
+      "source": "https://freesound.org/people/paskis3/sounds/186444/",
+      "author": "paskis3",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Coffee machine heating water for a cappuccino (20.6s). Looped → 17.6s."
+    },
+    {
+      "file": "public/sounds/keyboard.{ogg,m4a}",
+      "source": "https://freesound.org/people/stu556/sounds/450282/",
+      "author": "stu556",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Leopold FC660M, MX Brown switches, treble version (3:03). Trimmed to 120s and looped → 117s."
+    },
+    {
+      "file": "public/scenes/rainy-cafe/* (video.webm, video.mp4, poster.webp, thumb.webp)",
+      "source": "https://pixabay.com/videos/id-210240/",
+      "author": "TODO — fill in from the Pixabay page",
+      "license": "TODO — confirm on the Pixabay page (expected: Pixabay Content License)",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Original file 210240_medium.mp4 (2560×1440, 30s, no audio). Re-encoded to 1080p and frames extracted for poster/thumb. Source URL inferred from the Pixabay filename pattern — verify."
+    }
+  ]
+}
