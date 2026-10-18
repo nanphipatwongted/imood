@@ -16,16 +16,23 @@ const sound = (id: string, label: string, icon: string): AmbientSound => ({
 // Every sound any scene can use. Which ones appear in the mixer is decided per
 // scene in src/data/scenes.ts.
 //
-// Real recordings (storm, chatter, coffee, keyboard) are processed with
-// scripts/process-sound.sh; rain is still a synthetic placeholder from
+// All sounds are real recordings processed with scripts/process-sound.sh,
+// except rain, which is still a synthetic placeholder from
 // scripts/generate-placeholder-sounds.sh. Log every real file in
 // src/data/credits.json.
 export const sounds: AmbientSound[] = [
+  // rainy-cafe
   sound('rain', 'ฝน', '🌧️'),
   sound('storm', 'พายุ', '⛈️'),
   sound('chatter', 'คนคุย', '🗣️'),
   sound('coffee', 'ทำกาแฟ', '☕'),
   sound('keyboard', 'คีย์บอร์ด', '⌨️'),
+  // calm-forest
+  sound('forest', 'เสียงป่า', '🌲'),
+  sound('birds', 'นกร้อง', '🐦'),
+  sound('stream', 'ลำธาร', '💧'),
+  sound('wind', 'ลม', '🍃'),
+  sound('campfire', 'กองไฟ', '🔥'),
 ];
 
 export const soundById = new Map(sounds.map((s) => [s.id, s]));

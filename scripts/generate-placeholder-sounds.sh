@@ -28,4 +28,4 @@ gen() {
 gen rain "anoisesrc=c=pink:a=0.5,highpass=f=400,lowpass=f=8000"
 
 # Real recordings (see src/data/credits.json) — not generated here:
-# storm, chatter, coffee, keyboard
+# storm, chatter, coffee, keyboard, forest, birds, stream, wind, campfire

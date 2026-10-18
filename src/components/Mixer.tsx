@@ -9,7 +9,7 @@ interface Props {
 
 export default function Mixer({ soundIds, mix, onChange }: Props) {
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-1.5 lg:space-y-3">
       {soundIds.map((id) => {
         const sound = soundById.get(id);
         if (!sound) return null;
@@ -19,7 +19,7 @@ export default function Mixer({ soundIds, mix, onChange }: Props) {
             <button
               type="button"
               onClick={() => onChange(id, volume > 0 ? 0 : 0.5)}
-              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg transition-colors ${
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base transition-colors lg:h-9 lg:w-9 lg:text-lg ${
                 volume > 0 ? 'bg-white/90' : 'bg-white/10 grayscale'
               }`}
               aria-label={`${volume > 0 ? 'ปิด' : 'เปิด'}เสียง${sound.label}`}
@@ -27,7 +27,7 @@ export default function Mixer({ soundIds, mix, onChange }: Props) {
             >
               {sound.icon}
             </button>
-            <span className="w-24 shrink-0 text-sm text-white/80">{sound.label}</span>
+            <span className="w-20 shrink-0 text-sm text-white/80 lg:w-24">{sound.label}</span>
             <input
               type="range"
               min={0}

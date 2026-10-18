@@ -36,7 +36,6 @@ interface Props {
   playing: boolean;
   volume: number;
   started: boolean;
-  onStationChange: (id: string) => void;
   onTogglePlay: () => void;
   onVolumeChange: (volume: number) => void;
   /** Focus mode: just play/pause, volume, and the smallest allowed player. */
@@ -48,7 +47,6 @@ export default function MusicPlayer({
   playing,
   volume,
   started,
-  onStationChange,
   onTogglePlay,
   onVolumeChange,
   compact = false,
@@ -92,26 +90,11 @@ export default function MusicPlayer({
     playerRef.current?.setVolume(volume * 100);
   }, [volume]);
 
-  // Compact mode only hides/resizes siblings — the iframe keeps its place in the
-  // tree, so React never remounts it and the stream doesn't restart.
+  // Station buttons live in StationPicker (placed by App per layout). Compact
+  // mode only resizes the embed box — the iframe keeps its place in the tree,
+  // so React never remounts it and the stream doesn't restart.
   return (
-    <div className="space-y-3">
-      <div className={`flex gap-2 ${compact ? 'hidden' : ''}`}>
-        {stations.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => onStationChange(s.id)}
-            className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
-              s.id === stationId ? 'bg-white text-black' : 'bg-white/10 text-white/80 hover:bg-white/20'
-            }`}
-          >
-            {s.name}
-          </button>
-        ))}
-      </div>
-
-      {/* Controls sit above the embed so they stay on screen on shorter displays. */}
+    <div className="space-y-2 lg:space-y-3">
       <div className="flex items-center gap-3">
         <button
           type="button"

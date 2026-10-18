@@ -31,6 +31,23 @@ export const scenes: Scene[] = [
       { id: 'keyboard', volume: 0 },
     ],
   },
+  {
+    id: 'calm-forest',
+    name: 'ป่าสงบ',
+    gradient: 'linear-gradient(160deg, #1f3a2e 0%, #3f6b4f 55%, #a3b98a 100%)',
+    // Ping-pong loop (forward then reversed) — the source camera drifts, so a
+    // straight loop would jump.
+    video: { webm: '/scenes/calm-forest/video.webm', mp4: '/scenes/calm-forest/video.mp4' },
+    poster: '/scenes/calm-forest/poster.webp',
+    thumb: '/scenes/calm-forest/thumb.webp',
+    sounds: [
+      { id: 'forest', volume: 0.5 },
+      { id: 'birds', volume: 0.4 },
+      { id: 'stream', volume: 0.3 },
+      { id: 'wind', volume: 0 },
+      { id: 'campfire', volume: 0 },
+    ],
+  },
 ];
 
 export const defaultScene = scenes[0];

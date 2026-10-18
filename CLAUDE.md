@@ -41,6 +41,14 @@
 - เพลง: ใช้ YouTube embed เป็นหลัก — license "royalty-free" ส่วนใหญ่ห้ามเผยแพร่เพลงแบบ standalone ซึ่งเว็บเปิดเพลงอาจเข้าข่าย
 - YouTube player ต้องมองเห็นได้ ≥ 200×200px ตามเงื่อนไข embed (โหมดโฟกัสจึงซ่อนแค่ panel อื่น ไม่ซ่อน player)
 
+## PWA (Add to Home Screen)
+
+- `public/manifest.webmanifest` + icons จาก `scripts/generate-icons.mjs` (icon-512 ใช้เป็น maskable ด้วย — ตัว "i" อยู่ใน safe zone)
+- `public/sw.js` ลงทะเบียนใน `Layout.astro` **เฉพาะ production build** (dev ไม่มี SW) — หน้าเว็บ network-first, `/_astro/*` cache-first, ไฟล์อื่น (เสียง/รูป) stale-while-revalidate, วิดีโอและ cross-origin (YouTube, Google Fonts) ไม่ cache
+- ทดสอบ SW ต้องใช้ `bun run build && bun run preview` — browser pane ในแอป Claude ไม่รองรับ SW ใช้ Chrome จริงแทน
+- ถ้าเปลี่ยนกลยุทธ์ cache หรืออยากล้าง cache เก่าทั้งหมด ให้ bump `CACHE` ใน `sw.js`
+- iPhone: `viewport-fit=cover` + status bar `black-translucent` — App.tsx pad ด้วย `env(safe-area-inset-*)`
+
 ## Roadmap
 
 1. **MVP (ตอนนี้)**: ฉากคาเฟ่วันฝนตก (วิดีโอจริง + 5 เสียง), ที่เหลือของแถวเป็นการ์ด "ฉากใหม่ เร็วๆ นี้" (hardcode ใน `App.tsx` — ปรับ col-span เมื่อเพิ่มฉาก), 3 สถานีเพลง, จำค่าที่ตั้งไว้รายฉาก, โหมดโฟกัส (แผงเพลงย่อเหลือปุ่มเล่น + แถบเสียง + ตัวเล่น 200×200)

@@ -47,13 +47,67 @@
       "note": "Leopold FC660M, MX Brown switches, treble version (3:03). Trimmed to 120s and looped → 117s."
     },
     {
-      "file": "public/scenes/rainy-cafe/* (video.webm, video.mp4, poster.webp, thumb.webp)",
-      "source": "https://pixabay.com/videos/id-210240/",
-      "author": "TODO — fill in from the Pixabay page",
-      "license": "TODO — confirm on the Pixabay page (expected: Pixabay Content License)",
+      "file": "public/sounds/forest.{ogg,m4a}",
+      "source": "https://freesound.org/s/405140/",
+      "author": "Mjeno",
+      "license": "CC0 1.0",
       "attributionRequired": false,
       "downloaded": "2026-10-18",
-      "note": "Original file 210240_medium.mp4 (2560×1440, 30s, no audio). Re-encoded to 1080p and frames extracted for poster/thumb. Source URL inferred from the Pixabay filename pattern — verify."
+      "note": "Autumn leaves falling on forest floor, moderate wind (19.5s, loopable). Looped → 16.5s."
+    },
+    {
+      "file": "public/sounds/birds.{ogg,m4a}",
+      "source": "https://freesound.org/s/856018/",
+      "author": "newlocknew",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Quiet forest edge, late spring, birds (title also mentions mosquitoes) (6:07). First 120s used, looped → 117s."
+    },
+    {
+      "file": "public/sounds/stream.{ogg,m4a}",
+      "source": "https://freesound.org/s/403049/",
+      "author": "teadrinker",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Forest stream (11s). Looped → 9.2s."
+    },
+    {
+      "file": "public/sounds/wind.{ogg,m4a}",
+      "source": "https://freesound.org/s/733595/",
+      "author": "misperpodcast",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Windy suburban front garden (14:19). First 120s used, looped → 117s."
+    },
+    {
+      "file": "public/sounds/campfire.{ogg,m4a}",
+      "source": "https://freesound.org/s/220958/",
+      "author": "Islabonita",
+      "license": "CC0 1.0",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "Stove burning, crackling firewood (37s). Looped → 34.1s."
+    },
+    {
+      "file": "public/scenes/rainy-cafe/* (video.webm, video.mp4, poster.webp, thumb.webp)",
+      "source": "https://pixabay.com/videos/id-210240/",
+      "author": "BackgroundsCHAIR",
+      "license": "Pixabay Content License",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "\"Ai Generated, bar, pub\" — AI-generated footage. Original file 210240_medium.mp4 (2560×1440, 30s, no audio). Re-encoded to 1080p; poster/thumb from frame 0."
+    },
+    {
+      "file": "public/scenes/calm-forest/* (video.webm, video.mp4, poster.webp, thumb.webp)",
+      "source": "https://pixabay.com/videos/id-203449/",
+      "author": "JoshuaWoroniecki",
+      "license": "Pixabay Content License",
+      "attributionRequired": false,
+      "downloaded": "2026-10-18",
+      "note": "\"Forest, Trees, Sunlight\". Original file 203449-921267347.mp4 (3840×2160, 60fps, 15.6s). Downscaled to 1080p30 and made into a 31s ping-pong loop (camera drifts, so a straight loop would jump)."
     }
   ]
 }

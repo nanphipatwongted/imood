@@ -22,7 +22,8 @@ const ogImage = new URL('/og.jpg', Astro.site ?? Astro.url).href;
 <html lang="th">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- viewport-fit=cover lets the scene fill the notch area; App pads with safe-area insets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <title>{title}</title>
 
@@ -30,6 +31,13 @@ const ogImage = new URL('/og.jpg', Astro.site ?? Astro.url).href;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Installable app (Add to Home Screen). Service worker: public/sw.js -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="imood" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="imood" />
@@ -49,5 +57,11 @@ const ogImage = new URL('/og.jpg', Astro.site ?? Astro.url).href;
   </head>
   <body>
     <slot />
+    <script>
+      // Production only — a service worker would fight Vite's hot reload in dev.
+      if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
+    </script>
   </body>
 </html>
