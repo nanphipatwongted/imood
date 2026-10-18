@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { scenes, upcomingScenes } from '../data/scenes';
+import { scenes } from '../data/scenes';
 import { loadState, mixFor, saveState, type MoodState } from '../lib/storage';
 import { useAmbientMixer } from '../hooks/useAmbientMixer';
 import SceneBackground from './SceneBackground';
@@ -89,20 +89,16 @@ export default function App() {
                   {s.name}
                 </button>
               ))}
-              {upcomingScenes.map((s) => (
-                <div
-                  key={s.id}
-                  aria-disabled="true"
-                  className="relative flex h-24 cursor-not-allowed flex-col justify-between overflow-hidden rounded-xl p-3 text-sm"
-                  style={{ background: s.gradient }}
-                >
-                  <div className="absolute inset-0 bg-black/55" />
-                  <span className="relative self-start rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-medium text-white/80">
-                    เร็วๆ นี้
-                  </span>
-                  <span className="relative font-medium text-white/60">{s.name}</span>
-                </div>
-              ))}
+              {/* Fills the rest of the row until more scenes launch. */}
+              <div
+                aria-disabled="true"
+                className="flex h-24 cursor-not-allowed flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-white/20 text-sm sm:col-span-2"
+              >
+                <span className="font-medium text-white/70">ฉากใหม่</span>
+                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-medium text-white/60">
+                  เร็วๆ นี้
+                </span>
+              </div>
             </div>
           </section>
 

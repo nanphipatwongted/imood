@@ -34,20 +34,3 @@ export const scenes: Scene[] = [
 ];
 
 export const defaultScene = scenes[0];
-
-/**
- * Teased in the scene picker as non-selectable "coming soon" cards. To launch
- * one, move it into `scenes` with its video and sound list.
- */
-export const upcomingScenes: Pick<Scene, 'id' | 'name' | 'gradient'>[] = [
-  {
-    id: 'forest',
-    name: 'ป่ายามเช้า',
-    gradient: 'linear-gradient(160deg, #1f3a2e 0%, #3f6b4f 55%, #a3b98a 100%)',
-  },
-  {
-    id: 'night-ocean',
-    name: 'ทะเลตอนกลางคืน',
-    gradient: 'linear-gradient(160deg, #0b1630 0%, #1d3557 55%, #457b9d 100%)',
-  },
-];
