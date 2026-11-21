@@ -1,12 +1,24 @@
+import { useEffect, useRef } from 'react';
 import type { Scene } from '../data/scenes';
 
-export default function SceneBackground({ scene }: { scene: Scene }) {
+export default function SceneBackground({ scene, paused = false }: { scene: Scene; paused?: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Also re-runs on scene change: the new <video> autoplays, so pause it again if needed.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (paused) video.pause();
+    else video.play().catch(() => {});
+  }, [paused, scene.id]);
+
   return (
     <div className="fixed inset-0 -z-10 transition-[background] duration-700" style={{ background: scene.gradient }}>
       {scene.video && (
         // `key` forces a fresh <video> per scene so the new source loads.
         <video
           key={scene.id}
+          ref={videoRef}
           className="h-full w-full object-cover"
           autoPlay
           muted
