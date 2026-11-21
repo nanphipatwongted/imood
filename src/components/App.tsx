@@ -17,6 +17,9 @@ const mobileTabs: { id: MobileTab; label: string }[] = [
 export default function App() {
   const [state, setState] = useState<MoodState>(loadState);
   const [started, setStarted] = useState(false);
+  // Global pause for everything (music, ambient sounds, scene video). Not saved:
+  // each visit starts playing, and the per-source settings below are untouched.
+  const [paused, setPaused] = useState(false);
   const [focus, setFocus] = useState(false);
   const [mobileTab, setMobileTab] = useState<MobileTab>('mixer');
 
@@ -34,11 +37,24 @@ export default function App() {
         mixes: { ...prev.mixes, [current.id]: { ...mixFor(prev, current), [id]: volume } },
       };
     });
-  const setStation = (id: string) => update({ stationId: id, musicOn: true });
+  // Choosing a station or pressing the music play button means "I want to listen",
+  // so both also lift the global pause.
+  const setStation = (id: string) => {
+    setPaused(false);
+    update({ stationId: id, musicOn: true });
+  };
+  const toggleMusic = () => {
+    if (paused) {
+      setPaused(false);
+      update({ musicOn: true });
+    } else {
+      update({ musicOn: !state.musicOn });
+    }
+  };
 
   useEffect(() => saveState(state), [state]);
   // Only the current scene's sounds are in `mix`, so other scenes' sounds fade out.
-  useAmbientMixer(mix, state.master, started);
+  useAmbientMixer(mix, state.master, started && !paused);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -62,17 +78,38 @@ export default function App() {
   return (
     // Mobile: exactly one screen tall, no page scroll. Desktop: free height.
     <div className="relative h-[100dvh] overflow-hidden text-white lg:h-auto lg:min-h-screen lg:overflow-visible">
-      <SceneBackground scene={scene} />
+      <SceneBackground scene={scene} paused={paused} />
 
       {/* Focus-mode watermark: always mounted so it can fade, non-interactive. */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 flex items-center justify-center transition-opacity duration-700 ${
+        // Bottom padding lifts the text above the centered pause/play button.
+        className={`pointer-events-none fixed inset-0 flex items-center justify-center pb-44 transition-opacity duration-700 md:pb-56 ${
           focus ? 'opacity-50' : 'opacity-0'
         }`}
       >
         <span className="text-6xl font-semibold tracking-tight md:text-8xl">imood</span>
       </div>
+
+      {/* Pause / play everything. Dimmed so it doesn't fight the scene, centered on screen. */}
+      {started && (
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-label={paused ? 'เล่นทั้งหมด' : 'หยุดทั้งหมด'}
+          className="fixed top-1/2 left-1/2 z-10 flex h-14 w-14 md:h-20 md:w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white opacity-50 backdrop-blur-md transition-opacity hover:opacity-80"
+        >
+          {paused ? (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-6 w-6 md:h-9 md:w-9" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 md:h-9 md:w-9" aria-hidden="true">
+              <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+            </svg>
+          )}
+        </button>
+      )}
 
       {!started && (
         <div className="fixed inset-0 z-20 flex flex-col items-center justify-center gap-6 bg-black/40 px-6 text-center backdrop-blur-sm">
@@ -199,10 +236,10 @@ export default function App() {
             <MusicPlayer
               compact={focus}
               stationId={state.stationId}
-              playing={started && state.musicOn}
+              playing={started && state.musicOn && !paused}
               volume={state.musicVolume}
               started={started}
-              onTogglePlay={() => update({ musicOn: !state.musicOn })}
+              onTogglePlay={toggleMusic}
               onVolumeChange={(v) => update({ musicVolume: v })}
             />
           </section>
